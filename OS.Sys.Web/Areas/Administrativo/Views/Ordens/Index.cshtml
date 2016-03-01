@@ -1,0 +1,76 @@
+﻿@model IEnumerable<OS.Sys.Dominio.Entidades.Ordem_de_servico>
+
+
+@using OS.Sys.Dominio.Entidades
+
+@{
+    ViewBag.Title = "Adminstrativo - Ordens";
+    Layout = "~/Areas/Administrativo/Views/Shared/_Administrativo_layout.cshtml";
+}
+
+<div id="mensagemTopo"></div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Ordens</h3>
+    </div>
+
+    <div class="panel-body">
+        <div>
+           
+
+            @using (Html.BeginForm())
+            {
+                <form class="navbar-form navbar-right">
+                    <div>@Html.ActionLink("Nova Ordem", "NovaOrdem", "Ordem_de_servico", new { @class = "btn btn-default" }) <p>
+                        
+                        @Html.DropDownList("BuscaStatus", new SelectList(new[] { "", "Iniciado", "Em suporte", "Aguardando cliente", "Fechado" }), new { @class = "form-control" })
+
+                        <input type="submit" value="Buscar" class="btn btn-default" />
+                        </div>
+                    
+
+                    @*Busca Status: @Html.TextBox("BuscaStatus")*@
+                    
+                </form>
+            }
+        </div>
+
+
+
+        <table class="table table-striped table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Numero OS</th>
+                    <th class="text-center">Nome do Cliente</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Equipamento</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                    {
+                    <tr id="row-@item.num_os">
+                        @*<td class="text-center"> OS @item.num_os</td>*@
+                        @*<td class="text-center">@Html.ActionLink(@item.num_os.ToString(), "Alterar", new {@item.num_os })</td>*@
+                        <td class="text-center">@Html.ActionLink(@item.num_os.ToString(), "Visualizar", new { @item.num_os })</td>
+                        <td class="text-center">@item.nome_cliente_os</td>
+                        <td class="text-center">@item.status_os</td>
+                        <td class="text-center">@item.equipamento_os</td>
+                        <td class="text-center">
+                            @using (Html.BeginForm("Excluir", "Ordens"))
+                                        {
+                                            @Html.Hidden("Id_os", item.id_os)
+                                            <input type="submit" class="btn btn-default btn-xs" value="Excluir"/>
+                                        }
+                                           @*<input type="submit" class="btn btn-default btn-xs" id="@item.num_os" name="@item.nome_cliente_os" value="Excluir" />*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*@Html.Partial("Confirmacao")*@

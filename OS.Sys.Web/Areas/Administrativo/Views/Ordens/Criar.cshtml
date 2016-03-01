@@ -1,0 +1,76 @@
+﻿@model OS.Sys.Dominio.Entidades.Ordem_de_servico
+
+@{
+    ViewBag.Title = "Criar OS";
+    Layout = "~/Areas/Administrativo/Views/Shared/_Administrativo_layout.cshtml";
+}
+
+
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>OS - @Model.num_os</h2>
+
+    </div>
+
+    @using (Html.BeginForm("Alterar", "Ordens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(o => o.id_os)
+            @Html.HiddenFor(o => o.data_de_criacao)
+            @Html.HiddenFor(o => o.data_de_atualizacao)
+
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                switch (property.PropertyName)
+                {
+                    case "id_os":
+                    case "data_de_criacao":
+                    case "data_de_atualizacao":
+
+
+                        break;
+                    default:
+                        <div class="form-group">
+                            <label>@(property.DisplayName ?? property.PropertyName)</label>
+
+                            @if (property.PropertyName == "defeito_reclamado_os" ||
+                                property.PropertyName == "defeito_detectado_os" ||
+                                property.PropertyName == "servico_a_realizar_os" ||
+                                property.PropertyName == "servico_realizado_os" ||
+                                property.PropertyName == "info_adicionais_os")
+                            {
+                                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                            }
+                            else
+                            {
+                                if (property.PropertyName == "status_os")
+                                {
+                                    @Html.DropDownList(property.PropertyName, new SelectList(new[] { "Iniciado" }))
+                                }
+                                else
+                                {
+                                    
+                                        @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                                }
+                            }
+
+                            @Html.ValidationMessage(property.PropertyName)
+                        </div>
+                        break;
+                }
+            }
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

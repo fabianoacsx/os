@@ -1,0 +1,122 @@
+﻿@model OS.Sys.Dominio.Entidades.Ordem_de_servico
+
+@{
+    ViewBag.Title = "Visualizar";
+    Layout = "~/Areas/Administrativo/Views/Shared/_Administrativo_layout.cshtml";
+}
+
+<h2>Modo de visualização</h2>
+
+<div
+    class="panel">
+    <div class="panel-heading">
+        <h2>OS - @Model.num_os</h2>
+
+    </div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.num_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_cliente_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_cliente_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_cliente_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_cliente_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.equipamento_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.equipamento_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.defeito_reclamado_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.defeito_reclamado_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.defeito_detectado_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.defeito_detectado_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.servico_a_realizar_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.servico_a_realizar_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.servico_realizado_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.servico_realizado_os)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.info_adicionais_os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.info_adicionais_os)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.data_de_criacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_de_criacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_de_atualizacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_de_atualizacao)
+        </dd>
+       
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar OS", "Alterar", new { @Model.num_os })
+    
+</p>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>
