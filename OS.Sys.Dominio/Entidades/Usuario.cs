@@ -26,5 +26,8 @@ namespace OS.Sys.Dominio.Entidades
         public int Tipo { get; set; }
 
         public DateTime UltimoAcesso { get; set; }
+
+        [Display(Name = "Data de Criação")]
+        public DateTime DataCriacao { get; set; }
     }   
 }

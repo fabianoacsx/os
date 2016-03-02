@@ -27,7 +27,7 @@ namespace OS.Sys.Web.Controllers
 
             //_repositorio.ObterUsuario(usuario);
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 Usuario user = _repositorio.ObterUsuario(usuario);
 
@@ -56,6 +56,7 @@ namespace OS.Sys.Web.Controllers
                     ModelState.AddModelError("", "Usuário não cadastrado");
                 }
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View(new Usuario());
         }
     }

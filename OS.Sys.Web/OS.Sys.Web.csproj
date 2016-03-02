@@ -113,6 +113,16 @@
     <Content Include="Areas\Administrativo\Views\Ordens\Alterar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Ordens\Visualizar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Ordens\Criar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Usuarios\Create.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Usuarios\Delete.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Usuarios\Details.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Usuarios\Edit.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Usuarios\Index.cshtml" />
+    <Content Include="Areas\Administrativo\Views\OS\Create.cshtml" />
+    <Content Include="Areas\Administrativo\Views\OS\Delete.cshtml" />
+    <Content Include="Areas\Administrativo\Views\OS\Details.cshtml" />
+    <Content Include="Areas\Administrativo\Views\OS\Edit.cshtml" />
+    <Content Include="Areas\Administrativo\Views\OS\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -130,6 +140,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administrativo\AdministrativoAreaRegistration.cs" />
     <Compile Include="Areas\Administrativo\Controllers\OrdensController.cs" />
+    <Compile Include="Areas\Administrativo\Controllers\OSController.cs" />
+    <Compile Include="Areas\Administrativo\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\Administrativo\Models\DropDownStatus.cs" />
     <Compile Include="Controllers\AutenticacaoController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
@@ -157,7 +169,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administrativo\Views\Autenticacao\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
