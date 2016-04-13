@@ -17,7 +17,6 @@ namespace OS.Sys.Dominio.Repositorio
         }
 
 
-
         //Salva uma nova OS ou Altera
         public void Salvar(Ordem_de_servico OrdemDeServico)
         {

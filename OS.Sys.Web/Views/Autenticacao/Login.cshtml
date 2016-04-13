@@ -1,6 +1,7 @@
 ﻿@model OS.Sys.Dominio.Entidades.Usuario
 @{
     Layout = null;
+    //Layout = "~/Areas/Administrativo/Views/Shared/_Administrativo_layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -35,6 +36,10 @@
                 -moz-outline: 0;
             }
 
+             .fonte-branca {
+                color: #fff;
+            }
+
         .fullscreen_bg {
             position: fixed;
             top: 0;
@@ -43,7 +48,7 @@
             left: 0;
             background-size: cover;
             background-position: 50% 50%;
-            background-image: url('http://twitrheaders.com/wp-content/uploads/2014/05/Wooden-pier.jpg');
+            background-image: url('http://www.intercamp.com.br/wp-content/uploads/2012/11/shutterstock_70728256.jpg');
             background-repeat: repeat;
         }
 
@@ -110,20 +115,35 @@
 
     <div class="container">
 
+        @*Como identificar o usuário logado.*@
+        @*<div id="divlogin">
+            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <p>Bem Vindo @HttpContext.Current.User.Identity.Name </p>
+            }
+        </div>*@
+
+
         @using (Html.BeginForm("Login", "Autenticacao", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
         {
             @Html.ValidationSummary();
             <form class="form-signin">
-                <h1 class="form-signin-heading text-muted">Área restrita</h1>
+                <h1 class="form-signin-heading text-muted">OS Sys</h1>
                 @Html.TextBoxFor(model => model.Login, new { @class = "form-control", placeholder = "Informe seu login" })
                @* @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })*@
                 @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Informe sua senha" })
                @* @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })*@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
-                    Entrar
-                </button>
+                                            Entrar
+                    </button>
             </form>
         }
+    </div>
+
+    <div class="footer fonte-branca text-center">
+        <div class="container">
+          Desenvolvido por FS Sistemas
+        </div>
     </div>
 </body>
 </html>

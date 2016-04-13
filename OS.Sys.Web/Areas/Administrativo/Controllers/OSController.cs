@@ -14,6 +14,7 @@ namespace OS.Sys.Web.Areas.Administrativo.Controllers
     public class OSController : Controller
     {
         private EfDbContext db = new EfDbContext();
+        private Ordem_de_servicoRepositorio _repositorio = new Ordem_de_servicoRepositorio();
 
         // GET: Administrativo/OS
         public ActionResult Index()
@@ -42,6 +43,17 @@ namespace OS.Sys.Web.Areas.Administrativo.Controllers
             return View();
         }
 
+        //public ActionResult Edit(int num_os)
+        //{
+        //    _repositorio = new Ordem_de_servicoRepositorio();
+        //    Ordem_de_servico ordem_de_servico = _repositorio.Ordem_de_servicos
+        //        .FirstOrDefault(o => o.num_os == num_os);
+
+        //    return View(ordem_de_servico);
+
+        //}
+
+
         // POST: Administrativo/OS/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -69,6 +81,8 @@ namespace OS.Sys.Web.Areas.Administrativo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            _repositorio = new Ordem_de_servicoRepositorio();
             Ordem_de_servico ordem_de_servico = db.Ordem_de_servicos.Find(id);
             if (ordem_de_servico == null)
             {
@@ -82,19 +96,32 @@ namespace OS.Sys.Web.Areas.Administrativo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_os,num_os,cod_cliente_os,nome_cliente_os,status_os,equipamento_os,defeito_reclamado_os,defeito_detectado_os,servico_a_realizar_os,servico_realizado_os,info_adicionais_os,data_de_criacao,data_de_atualizacao")] Ordem_de_servico ordem_de_servico) 
+        //public ActionResult Edit([Bind(Include = "id_os,num_os,cod_cliente_os,nome_cliente_os,status_os,equipamento_os,defeito_reclamado_os,defeito_detectado_os,servico_a_realizar_os,servico_realizado_os,info_adicionais_os,data_de_criacao,data_de_atualizacao")] Ordem_de_servico ordem_de_servico)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        ordem_de_servico.data_de_atualizacao = DateTime.Now;
+
+        //        db.Entry(ordem_de_servico).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(ordem_de_servico);
+        //}
+
+        public ActionResult Edit(Ordem_de_servico OrdemDeServico)
         {
             if (ModelState.IsValid)
             {
+                _repositorio = new Ordem_de_servicoRepositorio();
+                _repositorio.Salvar(OrdemDeServico);
 
-                ordem_de_servico.data_de_atualizacao = DateTime.Now;
-                
-                db.Entry(ordem_de_servico).State = EntityState.Modified;
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(ordem_de_servico);
+            return View(OrdemDeServico);
         }
+
 
         // GET: Administrativo/OS/Delete/5
         public ActionResult Delete(int? id)

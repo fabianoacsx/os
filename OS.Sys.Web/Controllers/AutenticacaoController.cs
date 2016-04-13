@@ -47,8 +47,14 @@ namespace OS.Sys.Web.Controllers
                             && returnUrl.StartsWith("/")
                             && !returnUrl.StartsWith("//")
                             && !returnUrl.StartsWith("/\\"))
-
+                        { 
                             return Redirect(returnUrl);
+                        }
+
+                        if (returnUrl == null) { 
+                           returnUrl = "../Administrativo/OS/Index";
+                                return Redirect(returnUrl);
+                        }
                     }
                 }
                 else
@@ -58,6 +64,12 @@ namespace OS.Sys.Web.Controllers
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(new Usuario());
+        }
+
+        public ActionResult Logoff()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("../Autenticacao/Login");
         }
     }
 }

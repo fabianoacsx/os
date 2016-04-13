@@ -82,16 +82,33 @@ namespace OS.Sys.Web.Areas.Administrativo.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "Id,Login,Senha,Nome,Tipo,UltimoAcesso")] Usuario usuario) Removendo o campo UltimoAcesso
-        public ActionResult Edit([Bind(Include = "Id,Login,Senha,Nome,Tipo")] Usuario usuario)
+        //public ActionResult Edit([Bind(Include = "Id,Login,Senha,Nome,Tipo")] Usuario usuario)
+
+        public ActionResult Edit([Bind(Prefix = "Usuario")]FormCollection collection)
         {
+
+            Usuario usuario = new Usuario();
+            
+            TryUpdateModel(usuario, "Usuario", collection.ToValueProvider());
+            usuario.UltimoAcesso = DateTime.Now;
+
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(usuario).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(usuario);
         }
+        //{
+        //    if (ModelState.IsValid)
+        //    {   
+        //        db.Entry(usuario).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(usuario);
+        //}
 
         // GET: Administrativo/Usuarios/Delete/5
         public ActionResult Delete(int? id)
